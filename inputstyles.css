@@ -1,0 +1,36 @@
+
+
+body{
+    background-color: #1F1F1F;
+}
+h1{
+    font-size: 10000;
+    color: #AFEEEE;
+    text-align: center;
+}    
+form{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+input{
+    color: white;
+    background-color: #08292B;
+    text-align: center;
+    border:  2px solid white;
+    border-radius: 5px;
+    width: 250px;
+    height: 50px;
+}
+button{
+    background-color: #ADD8E6;
+    color: black;
+    width: 200px; 
+    height: 50px; 
+    padding: 10px; 
+    font-size: 20px;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+    text-align: center;
+}
