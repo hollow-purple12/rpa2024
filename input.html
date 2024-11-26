@@ -81,9 +81,15 @@
                         <input id="minimum_rating" name="rating" type="text" placeholder="Enter minimum rating" class="textbox"/></br>
             <h2> Enter status </h2>
                         <input id="status" name="status" type="text" placeholder="Enter status" class="textbox"/></br>
-                        <input type="submit" class="btn" value="Submit"></br></br>
+            <h2> TV series or movie? </h2>
+                        <input id="type" name="type" type="text" placeholder="Enter your preference" class="textbox"/></br>
+                        <input type="submit" class="btn" value="Submit" onclick="output()"></br></br>
                 </form>
-
+                <script>
+                  function output() {
+                      window.location.href = "C:/Users/shreya v/Desktop/rpa_project2024/output.html";
+                  }
+                  </script>
               </div>
             </div>
         </body>
