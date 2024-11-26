@@ -1,20 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="inputstyles.css">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Input</title>
-</head>
-<body>
-   </div>
-    <h1>Enter genre</h1>
-    <p> 
-    <form> 
-        <input type="text" placeholder="Enter the genre you want">
-    </form>
-</p>
-    <button type="submit">Submit</button>
-</form>
-</body>
-</html>
+        <head>
+            <meta charset="UTF-8">
+            <title> User Input </title>
+            <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">   
+            <style>
+            body {
+              background-color: #272829;
+            }
+            h1 {
+              font-family: 'Oswald', sans-serif;
+              font-weight: bold;
+              color: #d35fed;
+              text-align: center;
+              font-size: 50px;
+              text-shadow: 2px 2px 2px white;
+            }
+            h2 {
+              font-family: 'Oswald', sans-serif;
+              font-weight: bold;
+              color: #5faded;
+              text-align: center;
+              font-size: 30px;
+              text-shadow: 1px 1px 2px rgb(97, 190, 233);
+            }
+            .msg{
+              font-family: 'Georgia', serif;
+              color: red;
+              text-align: center;
+              font-size: 25px;
+              text-shadow: 1px 1px 2px red;
+
+            }
+            form{
+              font-family: 'Georgia', serif;
+              display: block;
+              justify-content: center; 
+              align-items: center; 
+            }
+            input{
+              font-family: 'Georgia', serif;
+              color: white;
+              background-color: #111212;
+              text-align: center;
+              border:  2px solid white;
+              border-radius: 5px;
+              width: 250px;
+              height: 50px;
+              display: block;
+              margin-left: 630px;
+            }
+            .btn{
+              font-family: 'Georgia', serif;
+              margin-left: 660px;
+              background-color: #133ae8;
+              color: white;
+              width: 200px; 
+              height: 50px; 
+              padding: 10px; 
+              font-size: 20px;
+              margin-top: 20px;
+              margin-right: 20px;
+              text-align: center;
+            }
+            .bottom{
+              font-family: 'Georgia', serif;
+              color: white;
+              text-align: center;
+              font-size: 30px;
+            }
+            </style>        
+        </head>
+        <body>
+           <h1> StreamScout </h1>
+           <h2> Enter genre </h2>
+                        <input id="genre" name="email" type="text" placeholder="Enter genre" class="textbox"/></br></br>
+            <h2> Enter year </h2>
+                        <input id="year" name="password" type="password" placeholder="Enter year" class="textbox"/></br>
+            <h2> Enter minimum rating </h2>
+                        <input id="minimum_rating" name="password" type="password" placeholder="Enter minimum rating" class="textbox"/></br>
+            <h2> Enter status </h2>
+                        <input id="status" name="password" type="password" placeholder="Enter status" class="textbox"/></br>
+                        <input type="submit" class="btn" value="Submit"></br></br>
+                </form>
+
+              </div>
+            </div>
+        </body>
+    </html>
