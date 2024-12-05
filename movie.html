@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Movies </title>
+    <style>
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: bold;
+            color: #d35fed;
+            font-size: 50px;
+            text-shadow: 2px 2px 2px white;
+            margin-right: 20px;  
+            text-align: center;
+        }
+        body {
+            background-color: #272829;
+        }
+        h2 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: bold;
+            color: #5faded;
+            font-size: 22px; 
+            text-align: center;
+            text-shadow: 1px 1px 2px rgb(97, 190, 233);
+            margin: 5px 0;
+        }
+        img { 
+            max-width: 300px; 
+            max-height: 400px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 90%;
+            margin: auto;
+            align-items: center;
+        }
+        #poster {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px;
+        }
+        input {
+            font-family: 'Georgia', serif;
+            color: white;
+            background-color: #111212;
+            text-align: center;
+            border: 2px solid white;
+            border-radius: 5px;
+            width: 95%;
+            height: 50px;
+            font-size: 16px;
+        }
+        p {
+            font-family: 'Georgia', serif;
+            color: white;
+            font-size: 16px;
+        }
+        button {
+            font-family: 'Georgia', serif;
+            background-color: #133ae8;
+            color: white;
+            width: 200px;
+            height:50px;
+            max-height: 100px;
+            padding: 10px;
+            font-size: 20px;
+            margin: 20px auto;
+            display: block;
+            text-align: center;
+            cursor: pointer;
+        }
+        table {
+            border-collapse: collapse;
+            width: 30%;
+            margin: 0 10px;
+            display: inline-block;
+        }
+        th, td {
+            border: 1px solid #ddd;
+        }
+        td {
+            background-color: #0a0909;
+            color: white;
+            font-size: 16px;
+            font-family: 'Georgia',serif;
+        }
+        tr:hover {
+            background-color: #d1e7dd;
+        }
+        #synopsis {
+            color: #ffffff;
+            max-width: 600px;
+            text-align: left;
+            font-size: 16px;
+            white-space: pre-line; 
+            margin-left: 10px;
+        }
+        #release-date{
+            color: #ffffff;
+            font-size: 18px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn{ 
+            padding: 10px 20px; 
+            margin: 10px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            background-color: #133ae8; 
+            color: white;
+            text-align: center;
+        }
+    </style>        
+</head>
+<body>
+    <h1>Streamscout Movie Finder</h1>
+    <div class="container" id="input-fields">
+        <div>
+            <h2> Enter genre </h2>
+            <input id="genre" name="genre" type="text" placeholder="Enter genre" />
+        </div>
+        <div>
+            <h2> Enter language code</h2>
+            <input id="year" name="year" type="text" placeholder="Enter language code" />
+        </div>
+        <div>
+            <h2> Enter year </h2>
+            <input id="status" name="status" type="text" placeholder="Enter year" />
+        </div>
+        <div>
+            <h2> Enter actor name </h2>
+            <input id="type" name="type" type="text" placeholder="Enter actor name" />
+        </div>
+    </div>
+    <div>
+        <p><strong>Valid Genres:</strong> action, adventure, comedy, drama, fantasy, horror, mystery, romance, sci-fi, slice of life, supernatural, military, suspense, psychological.</p>
+        <p> Multiple genres if specified should be separated by commas.</p>
+        <p><strong>Valid Languages:</strong></p>
+        <table>
+            <tbody>
+                <tr>
+                    <td>English - en</td>
+                    <td>Tamil - ta</td>
+                    <td>French - fr</td>
+                </tr>
+                <tr>
+                    <td>Hindi - hi</td>
+                    <td>Punjabi - pa</td>
+                    <td>Spanish - es</td>
+                </tr>
+                <tr>
+                    <td>Kannada - kn</td>
+                    <td>Marathi - mr</td>
+                    <td>German - de</td>
+                </tr>
+                <tr>
+                    <td>Gujarati - gu</td>
+                    <td>Japanese - ja</td>
+                    <td>Italian - it</td>
+                </tr>
+                <tr>
+                    <td>Bengali - bn</td>
+                    <td>Korean - ko</td>
+                    <td>Portuguese - pt</td>
+                </tr>
+                <tr>
+                    <td>Malayalam - ml</td>
+                    <td>Urdu - ur</td>
+                    <td>Arabic - ar</td>
+                </tr>
+                <tr>
+                    <td>Telugu - te</td>
+                    <td>Malay - ms</td>
+                    <td>Russian - ru</td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="buttons" style="display: flex; justify-content: center; gap:20px;">
+        <button id="submit-button">Submit</button>
+        <button onclick="redirect()" style="height:100px;">Click Here for StreamScout Anime Finder</button>  
+        </div>
+        <div id="movie-details" style="display: none;">
+            <h1 id="movie-title">Movie Title</h1>
+            <div id="poster">
+                <img id="movie-poster" src="" alt="Movie Poster">
+                <div id="synopsis">Movie Synopsis</div>
+            </div>
+            <div id="release-date">Release Date: N/A</div>
+            <div id="buttons" style="display: flex; justify-content: center; gap:20px;">
+                <button class="btn" id="prev-button" onclick="showPreviousMovie()">Previous</button>
+                <button class="btn" id="next-button" onclick="showNextMovie()">Next</button>
+            </div>
+            
+        </div>
+        
+
+    <script>
+        function redirect() {
+    window.location.href = "http://localhost:8000/input.html"; // Replace with the desired URL
+}
+        let currentMovieIndex = 0; // Variable to track the current movie index
+        let moviesData = []; // Array to store fetched movies data
+
+        // Function to show the next movie
+        function showNextMovie() {
+            if (currentMovieIndex < moviesData.length - 1) {
+                currentMovieIndex++;
+                displayMovie(moviesData[currentMovieIndex]);
+            }
+        }
+
+        // Function to show the previous movie
+        function showPreviousMovie() {
+            if (currentMovieIndex > 0) {
+                currentMovieIndex--;
+                displayMovie(moviesData[currentMovieIndex]);
+            }
+        }
+
+        // Function to display the movie data
+        function displayMovie(movie) {
+            document.getElementById("movie-title").innerText = movie.title;
+            document.getElementById("movie-poster").src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+            document.getElementById("synopsis").innerText = movie.overview;
+            document.getElementById("release-date").innerText = `Release Date: ${movie.release_date}`;
+        }
+        document.getElementById("submit-button").addEventListener("click", async () => {
+    const API_KEY = "7a3fc30569f62b4145d0859a031d4e75"; // Replace with your TMDb API key
+    const genre = document.getElementById("genre").value.trim(); // Genre
+    const language = document.getElementById("year").value.trim(); // Language Code
+    const year = document.getElementById("status").value.trim(); // Year
+    const actor = document.getElementById("type").value.trim(); // Actor Name
+    let baseUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US`;
+
+    if (language) {
+        baseUrl += `&with_original_language=${language}`;
+    }
+
+    if (genre) {
+        const genreIds = {
+            action: 28,
+            adventure: 12,
+            comedy: 35,
+            drama: 18,
+            fantasy: 14,
+            horror: 27,
+            mystery: 9648,
+            romance: 10749,
+            scifi: 878,
+            "slice of life": 36,
+            supernatural: 10765,
+            military: 10752,
+            suspense: 80,
+            psychological: 53,
+        };
+
+        const genreId = genreIds[genre.toLowerCase()];
+        if (genreId) {
+            baseUrl += `&with_genres=${genreId}`;
+        } else {
+            alert("Invalid genre! Please choose from the valid genres listed.");
+            return;
+        }
+    }
+
+    if (year) {
+        baseUrl += `&primary_release_year=${year}`;
+    }
+
+    if (actor) {
+        try {
+            const actorResponse = await fetch(
+                `https://api.themoviedb.org/3/search/person?api_key=${API_KEY}&query=${actor}`
+            );
+            const actorData = await actorResponse.json();
+            if (actorData.results && actorData.results.length > 0) {
+                const actorId = actorData.results[0].id;
+                baseUrl += `&with_cast=${actorId}`;
+            } else {
+                alert("Actor not found! Searching without actor filter.");
+            }
+        } catch (error) {
+            console.error("Error fetching actor details:", error);
+        }
+    }
+
+    try {
+        const response = await fetch(baseUrl);
+        const data = await response.json();
+        moviesData = data.results;
+
+        if (moviesData.length > 0) {
+            currentMovieIndex = 0; // Reset to first movie
+            displayMovie(moviesData[currentMovieIndex]);
+
+            // Show movie details and buttons
+            document.getElementById("movie-details").style.display = "block";
+        } else {
+            alert("No movies found matching your search criteria.");
+        }
+    } catch (error) {
+        console.error("Error fetching movie data:", error);
+    }
+});
+
+    </script>
+</body>
+</html>

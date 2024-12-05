@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Anime Viewer</title>
+    <style>
+        body { 
+            font-family: 'Georgia', sans-serif; 
+            text-align: center; 
+            margin-top: 50px; 
+            background:#272829; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            justify-content: flex-start; /* Aligns items at the top */
+        }
+
+        #container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        img { 
+            max-width: 300px; 
+            height: auto; 
+            margin-right: 20px; 
+        }
+
+        #synopsis {
+            color: #ffffff;
+            max-width: 600px;
+            text-align: left;
+            font-size: 16px;
+            white-space: pre-line; /* Ensures newlines are displayed */
+        }
+
+        #episode-count {
+            color: #ffffff;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        button { 
+            padding: 10px 20px; 
+            margin: 10px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            background-color: #133ae8; 
+            color: white;
+        }
+
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: bold;
+            color: #d35fed;
+            text-align: center;
+            font-size: 50px;
+            text-shadow: 2px 2px 2px white;
+        }
+
+        #buttons {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="anime-title">Anime Title</h1>
+    <div id="container">
+        <img id="anime-poster" src="" alt="Anime Poster">
+        <div id="synopsis">Anime Synopsis</div>
+    </div>
+    <div id="episode-count">Episodes: 0</div>
+    <div id="buttons">
+        <button onclick="showPreviousAnime()">Previous</button>
+        <button onclick="showNextAnime()">Next</button>
+    </div>
+
+    <script>
+        const animeData = [{"title": "My Neighbor Totoro", "image_url": "https://media.kitsu.app/anime/poster_images/482/original.jpg", "synopsis": `Follow the adventures of Satsuki and her four-year-old sister Mei when they move into a new home in the countryside. To their delight they discover that their new neighbor is a mysterious forest spirit called Totoro who can be seen only through the eyes of a child. Totoro introduces them to extraordinary characters, including a cat that doubles as a bus, takes them on a journey through the wonders of nature.
+
+(Source: Disney)`, "episodes": "1"},{"title": "No Game No Life: Zero", "image_url": "https://media.kitsu.app/anime/poster_images/12325/original.jpg", "synopsis": `Six thousand years before Sora and Shiro were even a blink in the history of Disboard, war consumed the land, tearing apart the heavens, destroying stars, and even threatening to wipe out the human race. Amid the chaos and destruction, a young man named Riku leads humanity toward the tomorrow his heart believed in. One day, in the ruins of an Elf city, he meets Shuvi, a female exiled "Ex-machina" android who asks him to teach her what it means to have a human heart.
+
+(Source: Sentai Filmworks)`, "episodes": "1"},{"title": "The Disappearance of Haruhi Suzumiya", "image_url": "https://media.kitsu.app/anime/poster_images/4938/original.png", "synopsis": `One cold Christmas day, Kyon heads over to school and the SOS Brigade's holiday celebration, only to realize that Haruhi Suzumiya seems to have disappeared. Moreover, no one even remembers her or the SOS Brigade; Mikuru Asahina knows nothing and is now afraid of him, and Itsuki Koizumi has also gone missing. The Literature Club, formed only by an uncharacteristically shy Yuki Nagato, now occupies the old SOS club room.Suzumiya Haruhi no Shoushitsu is based on the fourth light novel of the acclaimed Haruhi series and is set after the events of the anime series. Not uncultured in the supernatural, Kyon will have to deal with his whole life turned upside down like a bad joke, and maybe it's better that way.
+[Written by MAL Rewrite]`, "episodes": "1"},{"title": "Kiki's Delivery Service", "image_url": "https://media.kitsu.app/anime/poster_images/471/original.jpg", "synopsis": `Kiki, a 13-year-old witch-in-training, must spend a year living on her own in a distant town in order to become a full-fledged witch. Leaving her family and friends, Kiki undertakes this tradition when she flies out into the open world atop her broomstick with her black cat Jiji.
+As she settles down in the coastal town of Koriko, Kiki struggles to adapt and ends up wandering the streets with no place to stay—until she encounters Osono, who offers Kiki boarding in exchange for making deliveries for her small bakery. Before long, Kiki decides to open her own courier service by broomstick, beginning her journey to independence. In attempting to find her place among the townsfolk, Kiki brings with her exciting new experiences and comes to understand the true meaning of responsibility.
+[Written by MAL Rewrite]`, "episodes": "1"},{"title": "Fairy Tail Movie 2: Dragon Cry", "image_url": "https://media.kitsu.app/anime/10922/poster_image/95ca078665cd2a70f925c8e2283fb361.jpg", "synopsis": `Dragon Cry is a magical artifact of deadly power, formed into a staff by the fury and despair of dragons long gone. Now, this power has been stolen from the hands of the Fiore kingdom by the nefarious traitor Zash Caine, who flees with it to the small island nation of Stella. Frightened that the power has fallen into the wrong hands, the King of Fiore hastily sends Fairy Tail to retrieve the staff. But this task proves frightening as a shadowy secret lies in the heart of the kingdom of Stella. Dragon Cry follows their story as they muster up all their strength to recover the stolen staff and save both kingdoms.
+
+(Source: MAL Rewrite)`, "episodes": "1"},{"title": "Black Butler: Book of the Atlantic", "image_url": "https://media.kitsu.app/anime/poster_images/11449/original.jpeg", "synopsis": `Whispers turn into screaming headlines in Earl Ciel Phantomhive's morning paper as word of the dead being resurrected takes society by storm. But when the unsavoury details of the business reach Ciel's ear, he and his superlative butler, Sebastian, book themselves on a luxury liner to look into these alleged miracles and the "Aurora Society" conducting them. As the waters lap and crash all around the vessel, mysterious individuals gather under the banner of the "Phoenix." Ciel and Sebastian may be one step closer to the truth, but have they sealed their fates by conducting an investigation on what could easily become a floating coffin...?
+(Source: Yen Press)`, "episodes": "1"},{"title": "My Hero Academia the Movie: Two Heroes", "image_url": "https://media.kitsu.app/anime/poster_images/14084/original.jpg", "synopsis": `The climactic finals are over, and U.A. is getting ready for the summer training camp. Deku and All Might receive an invitation from a certain person to go overseas to a giant artificial moving city called I-Island. This island, a kind of “science Hollywood” that gathers the knowledge of scientists from around the world, is holding an exhibition called I-Expo showcasing the results of Quirk and hero item research. In the midst of all this, Deku meets a Quirkless girl named Melissa and remembers his own Quirkless past. Out of the blue, the impregnable security system the island boasts is hacked by villains, and all the people on the island are taken as hostages! Now, a plan that could shake hero society has been put into motion! The man who holds the key to it all is the number one hero and Symbol of Peace, All Might.
+
+(Source: Funimation)`, "episodes": "1"},{"title": "Summer Wars", "image_url": "https://media.kitsu.app/anime/poster_images/4241/original.png", "synopsis": `OZ, a virtual world connected to the internet, has become extremely popular worldwide as a spot for people to engage in a large variety of activities, such as playing sports or shopping, through avatars created and customized by the user. OZ also possesses a near impenetrable security due to its strong encryption, ensuring that any personal data transmitted through the networks will be kept safe in order to protect those who use it. Because of its convenient applications, the majority of society has become highly dependent on the simulated reality, even going as far as entrusting the system with bringing back the unmanned asteroid explorer, Arawashi.
+Kenji Koiso is a 17-year-old math genius and part-time OZ moderator who is invited by his crush Natsuki Shinohara on a summer trip. But unbeknownst to him, this adventure requires him to act as her fiancé. Shortly after arriving at Natsuki's family's estate, which is preparing for her great-grandmother's 90th birthday, he receives a strange, coded message on his cell phone from an unknown sender who challenges him to solve it. Kenji is able to crack the code, but little does he know that his math expertise has just put Earth in great danger.
+[Written by MAL Rewrite]`, "episodes": "1"},{"title": "KonoSuba: God's Blessing on This Wonderful World!: Legend of Crimson", "image_url": "https://media.kitsu.app/anime/poster_images/41440/original.jpg", "synopsis": `The Crimson Demon village that Megumin and Yunyun are from is facing a threat that could mean it's ending. Kazuma and his gang follow Yunyun, who returns to the Crimson Demon village intent on saving it when they are faced with their greatest threat yet.
+
+(Source: Anime News Network)`, "episodes": "1"},{"title": "Haikyuu!! Movie 2: Shousha to Haisha", "image_url": "https://media.kitsu.app/anime/poster_images/10847/original.jpg", "synopsis": `Second Haikyuu!! recap movie.`, "episodes": "1"}];  // Replace %%AnimeData%% with your dynamic data
+        let currentIndex = 0;
+
+        function showAnime(index) {
+            document.getElementById('anime-title').textContent = animeData[index].title;
+            document.getElementById('anime-poster').src = animeData[index].image_url;
+            document.getElementById('synopsis').innerHTML = animeData[index].synopsis;  // Use innerHTML to preserve formatting
+            document.getElementById('episode-count').textContent = 'Episodes: ' + animeData[index].episodes;
+        }
+
+        function showNextAnime() {
+            if (currentIndex < animeData.length - 1) {
+                currentIndex++;
+                showAnime(currentIndex);
+            } else {
+                alert('This is the last anime!');
+            }
+        }
+
+        function showPreviousAnime() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showAnime(currentIndex);
+            } else {
+                alert('This is the first anime!');
+            }
+        }
+
+        showAnime(currentIndex);
+    </script>
+</body>
+</html>

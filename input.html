@@ -1,96 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <title> User Input </title>
-            <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">   
-            <style>
-            body {
-              background-color: #272829;
-            }
-            h1 {
-              font-family: 'Oswald', sans-serif;
-              font-weight: bold;
-              color: #d35fed;
-              text-align: center;
-              font-size: 50px;
-              text-shadow: 2px 2px 2px white;
-            }
-            h2 {
-              font-family: 'Oswald', sans-serif;
-              font-weight: bold;
-              color: #5faded;
-              text-align: center;
-              font-size: 30px;
-              text-shadow: 1px 1px 2px rgb(97, 190, 233);
-            }
-            .msg{
-              font-family: 'Georgia', serif;
-              color: red;
-              text-align: center;
-              font-size: 25px;
-              text-shadow: 1px 1px 2px red;
+<head>
+    <meta charset="UTF-8">
+    <title> User Input </title>
+    <style>
 
-            }
-            form{
-              font-family: 'Georgia', serif;
-              display: block;
-              justify-content: center; 
-              align-items: center; 
-            }
-            input{
-              font-family: 'Georgia', serif;
-              color: white;
-              background-color: #111212;
-              text-align: center;
-              border:  2px solid white;
-              border-radius: 5px;
-              width: 250px;
-              height: 50px;
-              display: block;
-              margin-left: 630px;
-            }
-            .btn{
-              font-family: 'Georgia', serif;
-              margin-left: 660px;
-              background-color: #133ae8;
-              color: white;
-              width: 200px; 
-              height: 50px; 
-              padding: 10px; 
-              font-size: 20px;
-              margin-top: 20px;
-              margin-right: 20px;
-              text-align: center;
-            }
-            .bottom{
-              font-family: 'Georgia', serif;
-              color: white;
-              text-align: center;
-              font-size: 30px;
-            }
-            </style>        
-        </head>
-        <body>
-           <h1> StreamScout </h1>
-           <h2> Enter genre </h2>
-                        <input id="genre" name="genre" type="text" placeholder="Enter genre" class="textbox"/></br></br>
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: bold;
+            color: #d35fed;
+            font-size: 50px;
+            text-shadow: 2px 2px 2px white;
+            margin-right: 20px; 
+            text-align: center; 
+        }
+        body {
+            background-color: #272829;
+        }
+        h2 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: bold;
+            color: #5faded;
+            font-size: 22px; /* Increased font size */
+            text-align: center;
+            text-shadow: 1px 1px 2px rgb(97, 190, 233);
+            margin: 5px 0;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 90%;
+            margin: auto;
+        }
+        input {
+            font-family: 'Georgia', serif;
+            color: white;
+            background-color: #111212;
+            text-align: center;
+            border: 2px solid white;
+            border-radius: 5px;
+            width: 95%;
+            height: 50px;
+            font-size: 16px;
+        }
+        p {
+            font-family: 'Georgia', serif;
+            color: white;
+            font-size: 16px;
+        }
+        button {
+            font-family: 'Georgia', serif;
+            background-color: #133ae8;
+            color: white;
+            width: 200px;
+            height: 100px;
+            padding: 10px;
+            font-size: 20px;
+            margin: 20px auto;
+            display: block;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>        
+</head>
+<body>
+        <h1>Streamscout Anime Finder</h1>
+    <div class="container">
+        <div>
+            <h2> Enter genre </h2>
+            <input id="genre" name="genre" type="text" placeholder="Enter genre" />
+        </div>
+        <div>
             <h2> Enter year </h2>
-                        <input id="year" name="genre" type="text" placeholder="Enter year" class="textbox"/></br>
-            <h2> Enter minimum rating </h2>
-                        <input id="minimum_rating" name="rating" type="text" placeholder="Enter minimum rating" class="textbox"/></br>
+            <input id="year" name="year" type="text" placeholder="Enter year" />
+        </div>
+        <div>
             <h2> Enter status </h2>
-                        <input id="status" name="status" type="text" placeholder="Enter status" class="textbox"/></br>
-            <h2> TV series or movie? </h2>
-                        <input id="type" name="type" type="text" placeholder="Enter your preference" class="textbox"/></br>
-                        <input type="submit" class="btn" value="Submit" onclick="output()"></br></br>
-                </form>
-                <script>
-                  function output() {
-                      window.location.href = "C:/Users/shreya v/Desktop/rpa_project2024/output.html";
-                  }
-                  </script>
-              </div>
-            </div>
-        </body>
-    </html>
+            <input id="status" name="status" type="text" placeholder="Enter status" />
+        </div>
+        <div>
+            <h2> TV or movie? </h2>
+            <input id="type" name="type" type="text" placeholder="Enter type" />
+        </div>
+    </div>
+    <div>
+        <p><strong>Valid Genres:</strong> action, adventure, comedy, drama, fantasy, horror, mecha, mystery, romance, sci-fi, slice of life, supernatural, military, suspense, psychological.</p>
+        <p> Multiple genres if specified should be separated by commas.</p>
+        <p><strong>Valid Status:</strong> current, finished, TBA, unreleased, upcoming.</p>
+        <p><strong>Valid Types:</strong> TV, movie, ONA, OVA, special.</p>
+      </div>
+      <div id="buttons" style="display: flex; justify-content: center; gap:20px;">
+        <button id="submit-button" style="height:50px;">Submit</button>
+        <button onclick="redirect()" style="height:100px;">Click Here for StreamScout Movie Finder</button>  
+        </div>
+    <script>
+        function redirect() {
+    window.location.href = "http://localhost:8000/movie.html"; // Replace with the desired URL
+}
+
+    </script>
+</body>
+</html>

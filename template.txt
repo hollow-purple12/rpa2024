@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Anime Viewer</title>
+    <style>
+        body { 
+            font-family: 'Georgia', sans-serif; 
+            text-align: center; 
+            margin-top: 50px; 
+            background:#272829; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            justify-content: flex-start; /* Aligns items at the top */
+        }
+
+        #container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        img { 
+            max-width: 300px; 
+            height: auto; 
+            margin-right: 20px; 
+        }
+
+        #synopsis {
+            color: #ffffff;
+            max-width: 600px;
+            text-align: left;
+            font-size: 16px;
+            white-space: pre-line; /* Ensures newlines are displayed */
+        }
+
+        #episode-count {
+            color: #ffffff;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        button { 
+            padding: 10px 20px; 
+            margin: 10px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            background-color: #133ae8; 
+            color: white;
+        }
+
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: bold;
+            color: #d35fed;
+            text-align: center;
+            font-size: 50px;
+            text-shadow: 2px 2px 2px white;
+        }
+
+        #buttons {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="anime-title">Anime Title</h1>
+    <div id="container">
+        <img id="anime-poster" src="" alt="Anime Poster">
+        <div id="synopsis">Anime Synopsis</div>
+    </div>
+    <div id="episode-count">Episodes: 0</div>
+    <div id="buttons">
+        <button onclick="showPreviousAnime()">Previous</button>
+        <button onclick="showNextAnime()">Next</button>
+    </div>
+
+    <script>
+        const animeData = [%%AnimeData%%];  // Replace %%AnimeData%% with your dynamic data
+        let currentIndex = 0;
+
+        function showAnime(index) {
+            document.getElementById('anime-title').textContent = animeData[index].title;
+            document.getElementById('anime-poster').src = animeData[index].image_url;
+            document.getElementById('synopsis').innerHTML = animeData[index].synopsis;  // Use innerHTML to preserve formatting
+            document.getElementById('episode-count').textContent = 'Episodes: ' + animeData[index].episodes;
+        }
+
+        function showNextAnime() {
+            if (currentIndex < animeData.length - 1) {
+                currentIndex++;
+                showAnime(currentIndex);
+            } else {
+                alert('This is the last anime!');
+            }
+        }
+
+        function showPreviousAnime() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showAnime(currentIndex);
+            } else {
+                alert('This is the first anime!');
+            }
+        }
+
+        showAnime(currentIndex);
+    </script>
+</body>
+</html>
